@@ -1,11 +1,20 @@
-<script setup>
-
-</script>
-
 <template>
-  $END$
+  <v-btn
+    icon="mdi-theme-light-dark"
+    variant="text"
+    @click="toggleTheme"
+  />
 </template>
 
-<style scoped lang="sass">
+<script setup>
+import { useTheme } from 'vuetify'
 
-</style>
+const theme = useTheme()
+
+const toggleTheme = () => {
+  theme.global.name.value =
+    theme.global.name.value === 'dark' ? 'light' : 'dark'
+}
+</script>
+
+<style></style>
