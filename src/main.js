@@ -15,8 +15,9 @@ import { createApp } from 'vue'
 
 // Styles
 import 'unfonts.css'
+import i18n from "@/i18n/index.js";
 
-const app = createApp(App)
+const app = createApp(App).use(i18n)
 
 registerPlugins(app)
 
