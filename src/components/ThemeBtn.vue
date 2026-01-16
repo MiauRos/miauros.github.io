@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    icon="mdi-theme-light-dark"
+    :icon="icon"
     variant="text"
     @click="toggleTheme"
   />
@@ -8,12 +8,19 @@
 
 <script setup>
 import { useTheme } from 'vuetify'
+import {ref} from "vue";
 
 const theme = useTheme()
+const icon = ref('')
 
 const toggleTheme = () => {
-  theme.global.name.value =
-    theme.global.name.value === 'dark' ? 'light' : 'dark'
+  if (theme.global.name.value === 'dark') {
+    theme.global.name.value = 'light';
+    icon.value = 'mdi-weather-night';
+  } else {
+    theme.global.name.value = 'dark';
+    icon.value = 'mdi-white-balance-sunny';
+  }
 }
 </script>
 

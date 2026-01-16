@@ -20,28 +20,60 @@ export default createVuetify({
         dark: false,
         colors: {
           background: '#d6def0',
-          text: '#14161a',
-          primary: '#1453db',   // Verde principal
-          secondary: '#a9b7cb', // Verde suave
-          accent: '#3bde77',    // Verde acento
-          error: '#E53935',
-          info: '#1E88E5',
-          success: '#43A047',
-          warning: '#FB8C00'
+          surface: '#E8EDF7',
+
+          // Colores de acento
+          primary: '#3B82F6',
+          secondary: '#10B981',
+
+          // Estados
+          success: '#10B981',
+          warning: '#F59E0B',
+          error: '#EF4444',
+          info: '#3B82F6',
+
+          // Textos
+          'on-background': '#1E293B',
+          'on-surface': '#1E293B',
+          'on-primary': '#FFFFFF',
+          'on-secondary': '#FFFFFF',
+
+          // Grises/Slate personalizados para tema claro
+          'surface-variant': '#C7D2E8',
+          'surface-light': '#E8EDF7',
+          'text-primary': '#0F172A',
+          'text-secondary': '#475569',
+          'text-disabled': '#94A3B8',
         }
       },
       dark: {
         dark: true,
         colors: {
           background: '#0F172A',
-          text: '#E5E7EB',
-          primary: '#2563EB',
-          secondary: '#334155',
-          accent: '#22C55E',
-          error: '#EF5350',
-          info: '#42A5F5',
-          success: '#66BB6A',
-          warning: '#FFA726'
+          surface: '#1E293B',
+
+          // Colores de acento
+          primary: '#3B82F6',
+          secondary: '#10B981',
+
+          // Estados
+          success: '#10B981',
+          warning: '#F59E0B',
+          error: '#EF4444',
+          info: '#3B82F6',
+
+          // Textos
+          'on-background': '#CBD5E1',
+          'on-surface': '#CBD5E1',
+          'on-primary': '#FFFFFF',
+          'on-secondary': '#FFFFFF',
+
+          // Grises/Slate personalizados
+          'surface-variant': '#334155',
+          'surface-light': '#475569',
+          'text-primary': '#F8FAFC',
+          'text-secondary': '#94A3B8',
+          'text-disabled': '#64748B',
         }
       }
     }

@@ -12,7 +12,6 @@
         <h1 class="text-h2 my-0 font-weight-bold">Vuetify</h1>
       </div>
 
-      <theme-btn/>
       <v-row>
         <v-col cols="12">
           <v-card
@@ -61,8 +60,6 @@
 </template>
 
 <script setup>
-  import ThemeBtn from "@/components/ThemeBtn.vue";
-
   const links = [
     {
       href: 'https://vuetifyjs.com/',
