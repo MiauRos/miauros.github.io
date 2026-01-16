@@ -12,15 +12,15 @@
         <h1 class="text-h2 my-0 font-weight-bold">Vuetify</h1>
       </div>
 
+      <theme-btn/>
       <v-row>
         <v-col cols="12">
           <v-card
             class="py-4"
-            color="surface-variant"
+            color="secondary"
             image="https://cdn.vuetifyjs.com/docs/images/one/create/feature.png"
             prepend-icon="mdi-rocket-launch-outline"
             rounded="lg"
-            variant="tonal"
           >
             <template #image>
               <v-img position="top right" />
@@ -44,7 +44,7 @@
           <v-card
             append-icon="mdi-open-in-new"
             class="py-4"
-            color="surface-variant"
+            :color="link.color"
             :href="link.href"
             :prepend-icon="link.icon"
             rel="noopener noreferrer"
@@ -52,7 +52,7 @@
             :subtitle="link.subtitle"
             target="_blank"
             :title="link.title"
-            variant="tonal"
+            variant="flat"
           />
         </v-col>
       </v-row>
@@ -61,30 +61,36 @@
 </template>
 
 <script setup>
+  import ThemeBtn from "@/components/ThemeBtn.vue";
+
   const links = [
     {
       href: 'https://vuetifyjs.com/',
       icon: 'mdi-text-box-outline',
       subtitle: 'Learn about all things Vuetify in our documentation.',
       title: 'Documentation',
+      color: 'primary',
     },
     {
       href: 'https://vuetifyjs.com/introduction/why-vuetify/#feature-guides',
       icon: 'mdi-star-circle-outline',
       subtitle: 'Explore available framework Features.',
       title: 'Features',
+      color: 'secondary',
     },
     {
       href: 'https://vuetifyjs.com/components/all',
       icon: 'mdi-widgets-outline',
       subtitle: 'Discover components in the API Explorer.',
       title: 'Components',
+      color: 'accent',
     },
     {
       href: 'https://discord.vuetifyjs.com',
       icon: 'mdi-account-group-outline',
       subtitle: 'Connect with Vuetify developers.',
       title: 'Community',
+      color: 'text',
     },
   ]
 </script>
