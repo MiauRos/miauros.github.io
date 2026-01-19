@@ -14,10 +14,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get commit message
+      - name: Read commit message
         id: commit
         run: |
-          echo "message=$(git log -1 --pretty=%B)" >> $GITHUB_OUTPUT
+          COMMIT_MSG="$(git log -1 --pretty=%B)"
+          
+          CLEAN_MSG="$(echo "$COMMIT_MSG" | sed 's/#pr//g; s/#dev//g; s/#prod//g')"
+
+          TITLE="$(echo "$CLEAN_MSG" | head -n 1 | xargs)"
+
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          
+          echo "raw=$COMMIT_MSG" >> $GITHUB_OUTPUT
 
       - name: Determine target branch
         id: target
