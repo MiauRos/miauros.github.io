@@ -24,7 +24,9 @@ jobs:
           TITLE="$(echo "$CLEAN_MSG" | head -n 1 | xargs)"
 
           echo "title=$TITLE" >> $GITHUB_OUTPUT
-          
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          echo "$BODY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
           echo "raw=$COMMIT_MSG" >> $GITHUB_OUTPUT
 
       - name: Determine target branch
@@ -53,5 +55,5 @@ jobs:
           gh pr create \
             --head "${{ github.ref_name }}" \
             --base "${{ steps.target.outputs.branch }}" \
-            --title "Auto PR from ${{ github.ref_name }}" \
+            --title "${{ steps.commit.outputs.title }}" \
             --body "Pull Request creado automáticamente desde el commit."
