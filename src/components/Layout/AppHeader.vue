@@ -12,10 +12,10 @@
 
     <v-spacer />
 
-    <v-btn variant="text">{{ t('header.home') }}</v-btn>
-    <v-btn variant="text">{{ t('header.projects') }}</v-btn>
-    <v-btn variant="text">{{ t('header.about') }}</v-btn>
-    <v-btn variant="text">{{ t('header.contact') }}</v-btn>
+    <v-btn variant="text" to="/">{{ t('header.home') }}</v-btn>
+    <v-btn variant="text" to="/projects">{{ t('header.projects') }}</v-btn>
+    <v-btn variant="text" to="/about">{{ t('header.about') }}</v-btn>
+    <v-btn variant="text" to="/contact">{{ t('header.contact') }}</v-btn>
 
     <v-menu>
       <template #activator="{ props }">
