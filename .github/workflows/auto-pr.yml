@@ -32,7 +32,7 @@ jobs:
       - name: Determine target branch
         id: target
         run: |
-          MESSAGE="${{ steps.commit.outputs.message }}"
+          MESSAGE="${{ steps.commit.outputs.raw }}"
 
           if [[ "$MESSAGE" == *"#pr"* && "$MESSAGE" == *"#dev"* ]]; then
             echo "branch=development" >> $GITHUB_OUTPUT
