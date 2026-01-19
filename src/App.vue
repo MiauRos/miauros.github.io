@@ -2,14 +2,13 @@
   <v-app>
     <AppHeader/>
     <v-main>
-      <AppBody/>
+      <router-view/>
     </v-main>
     <AppFooter/>
   </v-app>
 </template>
 
 <script setup>
-import AppHeader from "@/components/AppHeader.vue";
-import AppBody from "@/components/AppBody.vue";
-import AppFooter from "@/components/AppFooter.vue";
+import AppHeader from "@/components/Layout/AppHeader.vue";
+import AppFooter from "@/components/Layout/AppFooter.vue";
 </script>
