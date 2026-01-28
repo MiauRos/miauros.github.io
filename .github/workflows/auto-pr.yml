@@ -1,0 +1,59 @@
+name: Auto Create Pull Request
+
+on:
+  push:
+    branches-ignore:
+      - main
+      - development
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read commit message
+        id: commit
+        run: |
+          COMMIT_MSG="$(git log -1 --pretty=%B)"
+          
+          CLEAN_MSG="$(echo "$COMMIT_MSG" | sed 's/#pr//g; s/#dev//g; s/#prod//g')"
+
+          TITLE="$(echo "$CLEAN_MSG" | head -n 1 | xargs)"
+
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          echo "$BODY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "raw=$COMMIT_MSG" >> $GITHUB_OUTPUT
+
+      - name: Determine target branch
+        id: target
+        run: |
+          MESSAGE="${{ steps.commit.outputs.raw }}"
+
+          if [[ "$MESSAGE" == *"#pr"* && "$MESSAGE" == *"#dev"* ]]; then
+            echo "branch=development" >> $GITHUB_OUTPUT
+          elif [[ "$MESSAGE" == *"#pr"* && "$MESSAGE" == *"#prod"* ]]; then
+            echo "branch=main" >> $GITHUB_OUTPUT
+          else
+            echo "skip=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Stop if not PR commit
+        if: steps.target.outputs.skip == 'true'
+        run: |
+          echo "No PR requested"
+          exit 0
+
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --head "${{ github.ref_name }}" \
+            --base "${{ steps.target.outputs.branch }}" \
+            --title "${{ steps.commit.outputs.title }}" \
+            --body "Pull Request creado automáticamente desde el commit."
